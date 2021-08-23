@@ -5,6 +5,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
+import org.testng.Assert;
 
 import com.MarsAir.org.PageActions;
 
@@ -30,6 +31,11 @@ private  WebElement returnDrpDwn;
 private  WebElement promoInput;
 
 
+public HomePage verifyUserisOnHomePage() {
+	Assert.assertTrue(driver.getTitle().equalsIgnoreCase("Mars Airlines: Home"));
+	return this;
+}
+
 public HomePage selectGivenDepartureDate(String departureDate){
 	Select s = new Select(departureDrpDwn);
 	s.selectByVisibleText(departureDate);
@@ -42,9 +48,9 @@ public HomePage selectGivenReturnDate(String returnDate){
 	return this;
 }
 
-public HomePage clickSearchButton(){
+public SearchPage clickSearchButton(){
 	searchButton.click();
-	return this;
+	return new SearchPage(driver);
 }
 
 public HomePage enterGivenPromo(String promocode){
